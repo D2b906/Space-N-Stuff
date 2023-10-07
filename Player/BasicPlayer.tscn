@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp1jacuy3p3cg"]
+
+[ext_resource type="Script" path="res://Player/AnimationController.gd" id="1_prqr0"]
+[ext_resource type="Script" path="res://Player/PlayerInput.gd" id="2_cyo5p"]
+
+[node name="BasicPlayer" type="CharacterBody2D"]
+
+[node name="Body" type="Node2D" parent="."]
+script = ExtResource("1_prqr0")
+
+[node name="PlayerInput" type="Node2D" parent="."]
+script = ExtResource("2_cyo5p")
+
+[connection signal="EndThrust" from="PlayerInput" to="Body" method="_on_player_input_end_thrust"]
+[connection signal="StartThrust" from="PlayerInput" to="Body" method="_on_player_input_start_thrust"]

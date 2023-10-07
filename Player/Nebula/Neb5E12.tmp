@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://hifw50vg5hgn"]
+
+[ext_resource type="PackedScene" uid="uid://dp1jacuy3p3cg" path="res://Player/BasicPlayer.tscn" id="1_8s605"]
+[ext_resource type="PackedScene" uid="uid://dw0fe52h33vpv" path="res://Player/Nebula/Core/Core.aseprite" id="2_n6iqq"]
+[ext_resource type="PackedScene" uid="uid://dyryw5c8j6mf1" path="res://Player/Nebula/Front/Front.aseprite" id="3_vwsb8"]
+[ext_resource type="PackedScene" uid="uid://ceija0bhyssnt" path="res://Player/Nebula/LeftWing/LeftWing.aseprite" id="4_q8h67"]
+[ext_resource type="PackedScene" uid="uid://bdhb65627csxh" path="res://Player/Nebula/RightWing/RightWing.aseprite" id="5_cewlu"]
+[ext_resource type="PackedScene" uid="uid://besskidnvp2l7" path="res://Player/Nebula/Thrust/Thrust.aseprite" id="6_2infs"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ogeaa"]
+radius = 6.0
+height = 14.0
+
+[node name="Nebula" instance=ExtResource("1_8s605")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CapsuleShape2D_ogeaa")
+
+[node name="Front" parent="Body" index="0" instance=ExtResource("3_vwsb8")]
+position = Vector2(0, -1)
+offset = Vector2(2, 1)
+region_rect = Rect2(0, 0, 7, 7)
+
+[node name="LeftWing" parent="Body" index="1" instance=ExtResource("4_q8h67")]
+position = Vector2(0, -1)
+offset = Vector2(-1, -4)
+region_rect = Rect2(0, 0, 10, 3)
+
+[node name="RightWing" parent="Body" index="2" instance=ExtResource("5_cewlu")]
+position = Vector2(0, -1)
+offset = Vector2(-1, 6)
+region_rect = Rect2(0, 0, 10, 3)
+
+[node name="Core" parent="Body" index="3" instance=ExtResource("2_n6iqq")]
+position = Vector2(0.5, -1)
+offset = Vector2(0, 1)
+region_rect = Rect2(0, 0, 4, 5)
+
+[node name="Thrust" parent="Body" index="4" instance=ExtResource("6_2infs")]
+offset = Vector2(-9, -5)
+region_rect = Rect2(8, 5, 4, 2)
+
+[editable path="Body/Front"]
+[editable path="Body/LeftWing"]
+[editable path="Body/Core"]
+[editable path="Body/Thrust"]

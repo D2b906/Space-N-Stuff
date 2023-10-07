@@ -1,0 +1,172 @@
+[gd_scene load_steps=13 format=3 uid="uid://hifw50vg5hgn"]
+
+[ext_resource type="PackedScene" uid="uid://dp1jacuy3p3cg" path="res://Player/BasicPlayer.tscn" id="1_8s605"]
+[ext_resource type="PackedScene" uid="uid://dw0fe52h33vpv" path="res://Player/Nebula/Core/Core.aseprite" id="2_n6iqq"]
+[ext_resource type="PackedScene" uid="uid://dyryw5c8j6mf1" path="res://Player/Nebula/Front/Front.aseprite" id="3_vwsb8"]
+[ext_resource type="PackedScene" uid="uid://ceija0bhyssnt" path="res://Player/Nebula/LeftWing/LeftWing.aseprite" id="4_q8h67"]
+[ext_resource type="PackedScene" uid="uid://bdhb65627csxh" path="res://Player/Nebula/RightWing/RightWing.aseprite" id="5_cewlu"]
+[ext_resource type="Texture2D" uid="uid://bemgj8llec6dw" path="res://Player/Nebula/Thrust/Thrust.png" id="6_vhlcu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ogeaa"]
+radius = 6.0
+height = 14.0
+
+[sub_resource type="Animation" id="Animation_nsbpg"]
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 0
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-10, -2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2i(7, 0, 7, 8), Rect2i(14, 0, 7, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_57hnn"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 0
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-10, -2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Rect2i(7, 8, 7, 8), Rect2i(14, 8, 7, 8), Rect2i(0, 9, 7, 8), Rect2i(7, 16, 7, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_r2nwu"]
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 0
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-10, -2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2i(14, 16, 7, 8), Rect2i(0, 17, 7, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_2yivf"]
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 0
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-10, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Rect2i(0, 0, 7, 9)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5eru4"]
+_data = {
+"Idle": SubResource("Animation_2yivf"),
+"ThrustE": SubResource("Animation_r2nwu"),
+"ThrustM": SubResource("Animation_57hnn"),
+"ThrustS": SubResource("Animation_nsbpg")
+}
+
+[node name="Nebula" instance=ExtResource("1_8s605")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CapsuleShape2D_ogeaa")
+
+[node name="Front" parent="Body" index="0" instance=ExtResource("3_vwsb8")]
+position = Vector2(0, -1)
+offset = Vector2(2, 1)
+region_rect = Rect2(0, 0, 7, 7)
+
+[node name="LeftWing" parent="Body" index="1" instance=ExtResource("4_q8h67")]
+position = Vector2(0, -1)
+offset = Vector2(-1, -4)
+region_rect = Rect2(0, 0, 10, 3)
+
+[node name="RightWing" parent="Body" index="2" instance=ExtResource("5_cewlu")]
+position = Vector2(0, -1)
+offset = Vector2(-1, 6)
+region_rect = Rect2(0, 0, 10, 3)
+
+[node name="Core" parent="Body" index="3" instance=ExtResource("2_n6iqq")]
+position = Vector2(0.5, -1)
+offset = Vector2(0, 1)
+region_rect = Rect2(0, 0, 4, 5)
+
+[node name="Thrust" type="Sprite2D" parent="Body" index="4"]
+texture = ExtResource("6_vhlcu")
+offset = Vector2(-10, -2)
+region_enabled = true
+region_rect = Rect2(7, 0, 7, 8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body/Thrust" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_5eru4")
+}
+
+[editable path="Body/Front"]
+[editable path="Body/LeftWing"]
+[editable path="Body/Core"]

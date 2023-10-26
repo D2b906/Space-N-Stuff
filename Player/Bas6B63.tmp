@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0grdw6skxvm0"]
+
+[ext_resource type="Script" path="res://Scripts/Player/PlayerMovement.gd" id="1_p4s7k"]
+
+[node name="BasicCharacter" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_p4s7k")
+
+[node name="Body" type="Node2D" parent="."]

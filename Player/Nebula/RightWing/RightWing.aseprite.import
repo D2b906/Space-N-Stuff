@@ -2,13 +2,13 @@
 
 importer="Aseprite Sprite2D with AnimationPlayer"
 type="PackedScene"
-uid="uid://bv417inpd7sc0"
-path="res://.godot/imported/Front.aseprite-d548beb8005ac018ec24a2e2306a7132.scn"
+uid="uid://wsse1l0ti3hv"
+path="res://.godot/imported/RightWing.aseprite-ec98820b40a9f278fc8eb59aaeee358c.scn"
 
 [deps]
 
-source_file="res://Player/Nebula/Front/Front.aseprite"
-dest_files=["res://.godot/imported/Front.aseprite-d548beb8005ac018ec24a2e2306a7132.scn"]
+source_file="res://Player/Nebula/RightWing/RightWing.aseprite"
+dest_files=["res://.godot/imported/RightWing.aseprite-ec98820b40a9f278fc8eb59aaeee358c.scn"]
 
 [params]
 

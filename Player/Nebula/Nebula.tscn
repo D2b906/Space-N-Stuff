@@ -1,16 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4v55jycl3flb"]
+[gd_scene load_steps=6 format=3 uid="uid://b4v55jycl3flb"]
 
 [ext_resource type="PackedScene" uid="uid://b0grdw6skxvm0" path="res://Player/BasicCharacter.tscn" id="1_ennpo"]
 [ext_resource type="PackedScene" uid="uid://c2xo48ac8ffa6" path="res://Player/Nebula/LeftWing/LeftWing.aseprite" id="2_sjclj"]
 [ext_resource type="PackedScene" uid="uid://bv417inpd7sc0" path="res://Player/Nebula/Front/Front.aseprite" id="3_8u47a"]
 [ext_resource type="PackedScene" uid="uid://cmihog63tgwp3" path="res://Player/Nebula/Core/Core.aseprite" id="4_upb0r"]
 [ext_resource type="PackedScene" uid="uid://wsse1l0ti3hv" path="res://Player/Nebula/RightWing/RightWing.aseprite" id="5_pp8rl"]
-
-[sub_resource type="Curve" id="Curve_jl22g"]
-min_value = -360.0
-max_value = 360.0
-_data = [Vector2(0, -360), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
 
 [node name="Nebula" instance=ExtResource("1_ennpo")]
 
@@ -36,12 +30,6 @@ region_rect = Rect2(0, 0, 4, 5)
 [node name="RightWing" parent="Body" index="3" instance=ExtResource("5_pp8rl")]
 offset = Vector2(10, 20)
 region_rect = Rect2(0, 0, 10, 3)
-
-[node name="Node2D" type="Node2D" parent="." index="2"]
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Node2D" index="0"]
-gravity = Vector2(0, 0)
-angular_velocity_curve = SubResource("Curve_jl22g")
 
 [editable path="Body/LeftWing"]
 [editable path="Body/Front"]

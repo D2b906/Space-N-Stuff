@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvvn3mjiibawy"]
+
+[ext_resource type="Script" path="res://Matter/Matter.gd" id="1_imgfg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_85aai"]
+size = Vector2(2, 2)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_i5g32"]
+
+[node name="Matter" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_imgfg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_85aai")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_i5g32")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

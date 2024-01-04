@@ -1,105 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnyo7ahgs18uq"]
+[gd_scene load_steps=3 format=3 uid="uid://dnyo7ahgs18uq"]
 
 [ext_resource type="PackedScene" uid="uid://b4v55jycl3flb" path="res://Player/Nebula/Nebula.tscn" id="1_pu5l3"]
-[ext_resource type="Script" path="res://Scripts/AsteroidCrappy.gd" id="2_eutrx"]
-[ext_resource type="Texture2D" uid="uid://bihn7k1tph6xl" path="res://Asteroid-2.png-1.png.png" id="2_wx6gg"]
-[ext_resource type="Texture2D" uid="uid://c5djx2y75d4qw" path="res://Asteroid-3.png" id="5_u2wqa"]
-[ext_resource type="Texture2D" uid="uid://0fo3esils76c" path="res://Asteroid-1.png.png" id="6_kcqfh"]
+[ext_resource type="PackedScene" uid="uid://cvvn3mjiibawy" path="res://Matter/Matter.tscn" id="2_rw8a4"]
 
 [node name="Main" type="Node2D"]
-
-[node name="Crappyfastspace-1_png" type="Sprite2D" parent="."]
-position = Vector2(125, 125)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_pu5l3")]
 position = Vector2(11, 30)
 motion_mode = 0
 friction = 0.99
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-position = Vector2(67.215, 38.005)
-gravity_scale = 0.0
-script = ExtResource("2_eutrx")
+[node name="Matter" parent="." instance=ExtResource("2_rw8a4")]
+position = Vector2(49, 16)
 
-[node name="Asteroid-2_png-1_png" type="Sprite2D" parent="RigidBody2D"]
-texture = ExtResource("2_wx6gg")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D"]
-polygon = PackedVector2Array(-7, -6, 10, 3, 3, 9, -13, 4)
-
-[node name="RigidBody2D2" type="RigidBody2D" parent="."]
-position = Vector2(34.715, 106.17)
-gravity_scale = 0.0
-script = ExtResource("2_eutrx")
-
-[node name="Asteroid-2_png-1_png" type="Sprite2D" parent="RigidBody2D2"]
-texture = ExtResource("2_wx6gg")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D2"]
-polygon = PackedVector2Array(-7, -6, 10, 3, 3, 9, -13, 4)
-
-[node name="RigidBody2D3" type="RigidBody2D" parent="."]
-position = Vector2(117.765, 22)
-gravity_scale = 0.0
-script = ExtResource("2_eutrx")
-
-[node name="Asteroid-2_png-1_png" type="Sprite2D" parent="RigidBody2D3"]
-texture = ExtResource("2_wx6gg")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D3"]
-polygon = PackedVector2Array(-7, -6, 10, 3, 3, 9, -13, 4)
-
-[node name="RigidBody2D4" type="RigidBody2D" parent="."]
-position = Vector2(168, 81)
-gravity_scale = 0.0
-script = ExtResource("2_eutrx")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D4"]
-polygon = PackedVector2Array(-2.765, -8, 11.235, -1, 1.235, 10, -8.765, 1)
-
-[node name="Asteroid-3" type="Sprite2D" parent="RigidBody2D4"]
-texture = ExtResource("5_u2wqa")
-
-[node name="RigidBody2D8" type="RigidBody2D" parent="."]
-position = Vector2(98, 79)
-gravity_scale = 0.0
-script = ExtResource("2_eutrx")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D8"]
-polygon = PackedVector2Array(-2.765, -8, 11.235, -1, 1.235, 10, -8.765, 1)
-
-[node name="Asteroid-3" type="Sprite2D" parent="RigidBody2D8"]
-texture = ExtResource("5_u2wqa")
-
-[node name="RigidBody2D5" type="RigidBody2D" parent="."]
-position = Vector2(31.545, 76.8)
-gravity_scale = 0.0
-script = ExtResource("2_eutrx")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D5"]
-polygon = PackedVector2Array(-9.545, 0.199997, -0.545, -5.8, 5.455, 3.2, -1.545, 10.2)
-
-[node name="Asteroid-1_png" type="Sprite2D" parent="RigidBody2D5"]
-texture = ExtResource("6_kcqfh")
-
-[node name="RigidBody2D6" type="RigidBody2D" parent="."]
-position = Vector2(167, 46)
-gravity_scale = 0.0
-script = ExtResource("2_eutrx")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D6"]
-polygon = PackedVector2Array(-9.545, 0.199997, -0.545, -5.8, 5.455, 3.2, -1.545, 10.2)
-
-[node name="Asteroid-1_png" type="Sprite2D" parent="RigidBody2D6"]
-texture = ExtResource("6_kcqfh")
-
-[node name="RigidBody2D7" type="RigidBody2D" parent="."]
-position = Vector2(5.34, 57.08)
-gravity_scale = 0.0
-script = ExtResource("2_eutrx")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D7"]
-polygon = PackedVector2Array(-9.545, 0.199997, -0.545, -5.8, 5.455, 3.2, -1.545, 10.2)
-
-[node name="Asteroid-1_png" type="Sprite2D" parent="RigidBody2D7"]
-texture = ExtResource("6_kcqfh")
+[node name="Matter2" parent="." instance=ExtResource("2_rw8a4")]
+position = Vector2(44, 28)

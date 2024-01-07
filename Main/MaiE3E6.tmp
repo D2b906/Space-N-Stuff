@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b4v55jycl3flb" path="res://Player/Nebula/Nebula.tscn" id="1_pu5l3"]
 [ext_resource type="Script" path="res://Scripts/UI/MatterBar.gd" id="3_e78wc"]
-[ext_resource type="Script" path="res://Matter/MatterController.gd" id="3_n4k5y"]
+[ext_resource type="Script" path="res://Main/MatterController.gd" id="3_fmlt4"]
 
 [node name="Main" type="Node2D"]
 
@@ -23,11 +23,10 @@ step = 1.0
 show_percentage = false
 script = ExtResource("3_e78wc")
 
-[node name="MatterController" type="Node2D" parent="." node_paths=PackedStringArray("followNode")]
-script = ExtResource("3_n4k5y")
+[node name="MatterController" type="Node2D" parent="."]
+script = ExtResource("3_fmlt4")
 spawnDelayMax = 0.05
 spawnDelayMin = 0.01
-followNode = NodePath("../CharacterBody2D")
 
 [editable path="CharacterBody2D"]
 [editable path="CharacterBody2D/Body/LeftWing"]

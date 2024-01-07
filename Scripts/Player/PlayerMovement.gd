@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export_group("Movement Feel")
 @export var acceleration : float = 1
 @export var rotationSpeed : float = 0.75
 @export var rotationLerp : float = 0.05
@@ -13,7 +14,10 @@ extends CharacterBody2D
 var currentRotationSpeed : float = 0
 
 
+
+
 func _physics_process(_delta: float) -> void:
+	
 	var thrust : float = Input.get_axis("ThrustForward","ThrustReverse")
 	var rot : float = Input.get_axis("RotateCounterClockwise","RotateClockwise")
 	if thrust > 0:
@@ -28,4 +32,5 @@ func _physics_process(_delta: float) -> void:
 	currentRotationSpeed = min(lerp(currentRotationSpeed,rotateAmount,rotationLerp ) ,maxRotationSpeed)
 	rotation = currentRotationSpeed + rotation
 	move_and_slide()
+
 

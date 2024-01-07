@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4v55jycl3flb"]
+[gd_scene load_steps=9 format=3 uid="uid://b4v55jycl3flb"]
 
 [ext_resource type="PackedScene" uid="uid://b0grdw6skxvm0" path="res://Player/BasicCharacter.tscn" id="1_ennpo"]
 [ext_resource type="PackedScene" uid="uid://c2xo48ac8ffa6" path="res://Player/Nebula/LeftWing/LeftWing.aseprite" id="2_sjclj"]
@@ -6,30 +6,86 @@
 [ext_resource type="PackedScene" uid="uid://cmihog63tgwp3" path="res://Player/Nebula/Core/Core.aseprite" id="4_upb0r"]
 [ext_resource type="PackedScene" uid="uid://wsse1l0ti3hv" path="res://Player/Nebula/RightWing/RightWing.aseprite" id="5_pp8rl"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wqkrj"]
+radius = 6.0
+height = 14.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g0rng"]
+radius = 7.0
+height = 16.0
+
+[sub_resource type="GDScript" id="GDScript_giucq"]
+script/source = "extends Node2D
+
+@export var matterCount : int = 0
+@export var bodyNode : Node2D
+
+var isInvisible : bool = false
+
+signal matter_changed(amount: int)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if Input.is_key_pressed(Key.KEY_F) and isInvisible:
+		for i in bodyNode.get_children():
+			if i is Sprite2D:
+				i.modulate.a = 1;
+		isInvisible = false
+	
+	if Input.is_key_pressed(Key.KEY_SPACE) and matterCount >= 10:
+		isInvisible = true;
+		for i in bodyNode.get_children():
+			if i is Sprite2D:
+				i.modulate.a = .5;
+		matterCount -= 10
+		matter_changed.emit(matterCount)
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	const MATTER_GROUP_NAME = \"matter\"
+	if area.is_in_group(MATTER_GROUP_NAME):
+			area.queue_free()
+			matterCount += 1
+			matter_changed.emit(matterCount)
+"
+
 [node name="Nebula" instance=ExtResource("1_ennpo")]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
-position = Vector2(2, 0)
-polygon = PackedVector2Array(-7, -7, 3, -5, 4.5, 0, 3, 5, -7, 7, -1, 0)
-
-[node name="Body" parent="." index="1"]
-position = Vector2(-14, -16.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_wqkrj")
 
 [node name="LeftWing" parent="Body" index="0" instance=ExtResource("2_sjclj")]
+position = Vector2(-14, -16.5)
 offset = Vector2(10, 10)
 region_rect = Rect2(0, 0, 10, 3)
 
 [node name="Front" parent="Body" index="1" instance=ExtResource("3_8u47a")]
+position = Vector2(-14, -16.5)
 offset = Vector2(14, 13)
 region_rect = Rect2(0, 0, 7, 7)
 
 [node name="Core" parent="Body" index="2" instance=ExtResource("4_upb0r")]
+position = Vector2(-14, -16.5)
 offset = Vector2(14, 14)
 region_rect = Rect2(0, 0, 4, 5)
 
 [node name="RightWing" parent="Body" index="3" instance=ExtResource("5_pp8rl")]
+position = Vector2(-14, -16.5)
 offset = Vector2(10, 20)
 region_rect = Rect2(0, 0, 10, 3)
+
+[node name="Area2D" type="Area2D" parent="." index="2"]
+position = Vector2(1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CapsuleShape2D_g0rng")
+
+[node name="MatterCollector" type="Node2D" parent="." index="3" node_paths=PackedStringArray("bodyNode")]
+script = SubResource("GDScript_giucq")
+bodyNode = NodePath("../Body")
+
+[connection signal="area_entered" from="Area2D" to="MatterCollector" method="_on_area_2d_area_entered"]
 
 [editable path="Body/LeftWing"]
 [editable path="Body/Front"]

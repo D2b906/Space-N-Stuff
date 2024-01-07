@@ -1,6 +1,7 @@
 extends Node2D
 
-
+@export var sprite : Sprite2D
+@export var time : float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -8,13 +9,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	time -= delta
+	if time <= 0:
+		queue_free()
 	pass
-
-
-func _on_body_entered(body: Node) -> void:
-	queue_free()
-
-
-func _on_mouse_entered() -> void:
-	print("Hello")
-	queue_free()

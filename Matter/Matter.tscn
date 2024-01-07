@@ -1,21 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvvn3mjiibawy"]
+[gd_scene load_steps=5 format=3 uid="uid://cphc55a4b6v34"]
 
-[ext_resource type="Script" path="res://Matter/Matter.gd" id="1_imgfg"]
+[ext_resource type="PackedScene" uid="uid://dllugr1prg3bs" path="res://Matter/Matter_1.0_finished.aseprite" id="1_ej3gm"]
+[ext_resource type="Script" path="res://Matter/Matter.gd" id="1_wlo2k"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_85aai"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y42eq"]
 size = Vector2(2, 2)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_i5g32"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1uku5"]
 
-[node name="Matter" type="RigidBody2D"]
-gravity_scale = 0.0
-script = ExtResource("1_imgfg")
+[node name="Matter" type="Area2D" node_paths=PackedStringArray("sprite") groups=["matter"]]
+script = ExtResource("1_wlo2k")
+sprite = NodePath("Sprite2D")
+time = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_85aai")
+shape = SubResource("RectangleShape2D_y42eq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("PlaceholderTexture2D_i5g32")
+texture = SubResource("PlaceholderTexture2D_1uku5")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[node name="Matter_1_0_finished" parent="." instance=ExtResource("1_ej3gm")]
+position = Vector2(1, 0)
